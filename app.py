@@ -4,6 +4,7 @@ from wtforms import StringField, SubmitField
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mykey'
+title = 'Flask Forms with Flash Messages'
 
 class SimpleForm(FlaskForm):
     submit = SubmitField('Click Me')
@@ -14,7 +15,7 @@ def index():
     if form.validate_on_submit():
         flash('You just clicked the button!')
         return redirect(url_for('index'))
-    return render_template('index.html', form=form)
+    return render_template('index.html', form=form, title=title)
 
 if __name__ == '__main__':
     app.run(debug=True)
